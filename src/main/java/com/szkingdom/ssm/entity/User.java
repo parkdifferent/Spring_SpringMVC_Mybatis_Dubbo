@@ -1,8 +1,13 @@
 package com.szkingdom.ssm.entity;
 
 
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
+
+
+    private static final long serialVersionUID = 3982564406348630503L;
+
     private Integer userId;
 
     private String userName;

@@ -1,11 +1,12 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
 
-    <!-- 磁盘缓存位置 -->
+    &lt;!&ndash; 磁盘缓存位置 &ndash;&gt;
     <diskStore path="java.io.tmpdir/ehcache"/>
 
-    <!-- 默认缓存 -->
+    &lt;!&ndash; 默认缓存 &ndash;&gt;
     <defaultCache
             maxEntriesLocalHeap="10000"
             eternal="false"
@@ -15,7 +16,7 @@
             diskExpiryThreadIntervalSeconds="120"
             memoryStoreEvictionPolicy="LRU"/>
 
-    <!-- helloworld缓存 -->
+    &lt;!&ndash; helloworld缓存 &ndash;&gt;
     <cache name="ssmCache"
            maxElementsInMemory="1000"
            eternal="false"
@@ -23,4 +24,39 @@
            timeToLiveSeconds="500"
            overflowToDisk="false"
            memoryStoreEvictionPolicy="LRU"/>
+</ehcache>-->
+
+
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+
+
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+
+    <cache name="ssmCache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="200"
+           timeToLiveSeconds="500"
+           maxElementsOnDisk="10000000"
+           diskExpiryThreadIntervalSeconds="120"
+           memoryStoreEvictionPolicy="LRU"/>
+
+
+
+
+
 </ehcache>

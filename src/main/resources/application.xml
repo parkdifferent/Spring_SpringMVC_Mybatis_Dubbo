@@ -125,9 +125,20 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<!--所有以query开头的方法都是只读的 -->
-			<tx:method name="query*" read-only="true" />
+			<tx:method name="query*" read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name="find*" read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED"/>
+			<tx:method name="select*" read-only="true" propagation="NOT_SUPPORTED"/>
+
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="create*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="add*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="edit*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="del*" propagation="REQUIRED" read-only="false"/>
 			<!--其他方法使用默认事务策略 -->
-			<tx:method name="*" />
+			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
 
@@ -149,15 +160,23 @@
 
 
 	<!--ehcache-->
-	<cache:annotation-driven />
 
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		<property name="cacheManager" ref="ehcache"></property>
-	</bean>
-	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+
+	<!-- 第一步：定义ehcache的对象EhCacheManager:spring提供了工厂，专业来new对象 -->
+	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:ehcache/ehcache.xml"></property>
 		<property name="shared" value="true"></property>
 	</bean>
+
+	<!-- 第二步：具体平台缓存管理器:整合ehcache的实现，需要导入jar -->
+
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehCacheManager"></property>
+	</bean>
+
+	<!-- 第三步：配置缓存注解驱动 -->
+	<cache:annotation-driven  cache-manager="cacheManager"/>
+
 
 
 

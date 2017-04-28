@@ -18,6 +18,6 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    @Cacheable("ssmCache")
+    /*@Cacheable("ssmCache")*/
     List<User> selectUserList();
 }

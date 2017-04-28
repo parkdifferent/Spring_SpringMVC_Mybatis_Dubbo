@@ -54,7 +54,7 @@
     </javaClientGenerator>
 
     <!--对应数据库表名 -->
-    <table tableName="record" domainObjectName="Record"
+    <table tableName="t_answer" domainObjectName="C_Answer"
            enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
            enableSelectByExample="false" selectByExampleQueryId="false" >
        <!-- <property name="useActualColumnNames" value="true"/>-->

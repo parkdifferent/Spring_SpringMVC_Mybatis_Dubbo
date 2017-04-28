@@ -14,6 +14,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -74,6 +75,12 @@ public class MyTest {
 
     @Autowired
     HttpSolrServer httpSolrServer;
+
+
+    @Before
+    public void setUp() {
+
+    }
 
     @Test
     public void testSolrj() throws SolrServerException {
@@ -357,9 +364,13 @@ public class MyTest {
          *
          */
 
-        LOG.debug("Result : {}",  userMapper.selectUserList());
-        LOG.debug("Result : {}",  userMapper.selectUserList());
-        LOG.debug("Result : {}", userMapper.selectUserList());
+        LOG.debug("Result11 : {}",  userService.selectUserList());
+
+        User user = userService.selectByPrimaryKey(1);
+        user.setUserName("ehcacheTest");
+        userService.updateByPrimaryKey(user);
+        LOG.debug("Result12 : {}",  userService.selectUserList());
+        LOG.debug("Result13 : {}", userService.selectUserList());
     }
 
 
@@ -368,9 +379,9 @@ public class MyTest {
 
         /*不使用缓存*/
 
-        LOG.debug("Result : {}",  userMapper.selectUserList());
-        LOG.debug("Result : {}",  userMapper.selectUserList());
-        LOG.debug("Result : {}", userMapper.selectUserList());
+        LOG.debug("Result1 : {}",  userMapper.selectUserList());
+        LOG.debug("Result2 : {}",  userMapper.selectUserList());
+        LOG.debug("Result3 : {}", userMapper.selectUserList());
     }
 
 

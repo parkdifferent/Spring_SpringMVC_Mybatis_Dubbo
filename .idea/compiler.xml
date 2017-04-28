@@ -26,7 +26,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Spring_SpringMVC_Mybatis_Dubbo" target="1.7" />
+      <module name="Spring_SpringMVC_Mybatis_Dubbo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

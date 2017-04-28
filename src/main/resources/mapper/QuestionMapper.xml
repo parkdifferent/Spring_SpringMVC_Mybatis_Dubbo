@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szkingdom.ssm.dao.QuestionMapper">
+    <cache />
+
+    <!--<select id="findOne" resultType="Question">
+        SELECT * FROM t_question WHERE t_question.id = #{id}
+    </select>-->
+
+    <select id="findOne" resultMap="questionDetail">
+        SELECT
+        t_question.id,
+        t_question.title,
+        t_question.description,
+        t_question.created_time as createdTime,
+        t_answer.id as answerId,
+        t_answer.content,
+        t_answer.email,
+        t_answer.created_time as createdTime
+        FROM t_question
+        LEFT JOIN t_answer on t_question.id = t_answer.question_id
+        WHERE t_question.id = #{id}
+    </select>
+
+    <resultMap id="questionDetail" type="Question" autoMapping="true">
+        <id property="id" column="id" />
+        <collection property="answers" ofType="Answer" autoMapping="true">
+            <id property="id" column="answerId"/>
+        </collection>
+        <!--<collection property="tags"-->
+
+    </resultMap>
+
+
+    <select id="findTags" resultMap="tagsDetail">
+        SELECT t_tag.id,t_tag.name FROM t_tag WHERE id IN (SELECT tag_id FROM ques_tag_relation WHERE ques_tag_relation.question_id = #{id})
+    </select>
+
+    <resultMap id="tagsDetail" type="Tag" autoMapping="true">
+    </resultMap>
+
+
+
+    <insert id="create" parameterType="Question" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_question
+        (title, description, created_time)
+        VALUES
+        (#{title}, #{description}, #{createdTime,jdbcType=TIMESTAMP})    /*jdbcType并非必须的，只有当插入该列的数据可能为空时，才必须设置*/
+    </insert>
+
+    <update id="update" parameterType="Question">
+        UPDATE t_question SET
+        title = #{title},
+        description = #{description}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM t_question WHERE id = #{id}
+    </delete>
+
+
+
+</mapper>

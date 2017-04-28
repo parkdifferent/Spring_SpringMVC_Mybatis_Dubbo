@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.szkingdom.ssm.dao.AnswerMapper" >
+
+  <select id="findOne" resultMap="answer">
+    SELECT
+    t_answer.id,
+    t_answer.content,
+    t_answer.email,
+    t_answer.created_time as createdTime,
+    t_answer.question_id,
+    t_question.id as question_id,
+    t_question.title as question_title,
+    t_question.description as question_description,
+    t_question.created_time as question_createdTime
+    FROM t_answer
+    LEFT JOIN t_question on t_answer.question_id = t_question.id
+    WHERE t_answer.id = #{id}
+  </select>
+
+
+  <resultMap id="answer" type="Answer" autoMapping="true">
+    <id property="id" column="id"/>
+    <association property="question" resultMap="question" columnPrefix="question_"/>
+  </resultMap>
+
+  <resultMap id="question" type="Question" autoMapping="true">
+    <id property="id" column="id"/>
+  </resultMap>
+</mapper>

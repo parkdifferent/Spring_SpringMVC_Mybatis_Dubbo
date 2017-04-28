@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static sun.plugin.javascript.navig.JSType.Document;
+
 /**
  * Created by tianf on 2016/10/31.
  */
@@ -85,4 +87,6 @@ public class JsoupTest {
         }
 
     }
+
+
 }
