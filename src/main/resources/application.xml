@@ -172,10 +172,12 @@
 
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
 		<property name="cacheManager" ref="ehCacheManager"></property>
+		<!--此处的transactionAware表示是否事务环绕的，如果true，则如果事务回滚，缓存也回滚，默认false-->
+		<property name="transactionAware" value="true"/>
 	</bean>
 
-	<!-- 第三步：配置缓存注解驱动 -->
-	<cache:annotation-driven  cache-manager="cacheManager"/>
+	<!-- 第三步：配置缓存注解驱动  spring-cache 注解-->
+	<cache:annotation-driven  cache-manager="cacheManager" proxy-target-class="true"/>
 
 
 

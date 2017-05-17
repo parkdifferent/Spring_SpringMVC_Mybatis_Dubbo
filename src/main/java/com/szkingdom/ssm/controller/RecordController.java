@@ -2,20 +2,18 @@ package com.szkingdom.ssm.controller;
 
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.szkingdom.ssm.entity.Record;
 import com.szkingdom.ssm.service.IRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by tianf on 2016/10/31.
@@ -30,6 +28,21 @@ public class RecordController {
 
     @Autowired
     private IRecordService recordService;
+
+
+    @RequestMapping("/export")
+    public void exportExcel() {
+        List<Record> recordList = recordService.selectRecordList();
+        recordService.exportExcel(recordList);
+        try {
+            InputStream stream = new FileInputStream(new File("D:/records.xlsx"));
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
 
 
     @RequestMapping("/recordList")

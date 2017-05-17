@@ -43,6 +43,9 @@
 	<mvc:resources location="bootstrap/js/**" mapping="/js/*"/>
 	<mvc:resources location="bootstrap/css/**" mapping="/css/**"/>-->
 
+	<!--静态资源交给tomcat处理-->
+	<mvc:default-servlet-handler/>
+
 	<bean id="multipartResolver"
 		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->

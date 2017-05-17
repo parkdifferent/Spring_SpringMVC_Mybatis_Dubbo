@@ -78,18 +78,51 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring-version}</version>
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+
 
 <!--        	com.springsource.org.aopalliance-1.0.0.jar： AOP联盟规范
         	com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar：aspectJ官方包-->
+
+        <!-- https://mvnrepository.com/artifact/org.aopalliance/com.springsource.org.aopalliance -->
+        <!--<dependency>
+            <groupId>org.aopalliance</groupId>
+            <artifactId>com.springsource.org.aopalliance</artifactId>
+            <version>1.0.0</version>
+        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.aspectj/com.springsource.org.aspectj.weaver -->
+        <!--<dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>com.springsource.org.aspectj.weaver</artifactId>
+            <version>1.6.8.RELEASE</version>
+        </dependency>-->
+
+        <!--spring-aspects  contains aspectjweaver
+        speing-aop  contains aopalliance -->
+
+
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -114,6 +147,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
 
         <!-- 日志文件管理包 -->
@@ -158,6 +197,8 @@
 
 
         <!-- Jackson Json处理工具包 -->
+        <!--jackson-databind  contains   jackson-annotations  、 jackson-core-->
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -203,8 +244,6 @@
             <artifactId>ehcache</artifactId>
             <version>2.10.2.2.21</version>
         </dependency>
-
-
 
 
 
@@ -273,6 +312,19 @@
         </dependency>
 
         <!--上传组件end-->
+
+        <!--excel导出-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.15</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.15</version>
+        </dependency>
 
 
         <!-- 分页助手 -->
@@ -380,9 +432,6 @@
             <version>4.10.2</version>
         </dependency>
 
-
-
-
         <!--wxpay-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -401,6 +450,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
 
 
 

@@ -22,4 +22,6 @@ public interface IRecordService {
     int updateByPrimaryKey(Record record);
 
     List<Record> selectRecordList();
+
+    void exportExcel(List<Record> list);
 }
