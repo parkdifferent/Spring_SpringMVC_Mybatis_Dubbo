@@ -346,6 +346,13 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.11</version>
+        </dependency>
+
+
 
 
             <!--<dependency>
@@ -439,6 +446,8 @@
             <version>1.2.31</version>
         </dependency>
 
+
+        <!--xml-->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
