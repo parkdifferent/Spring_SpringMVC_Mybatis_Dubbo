@@ -2,6 +2,9 @@ package com.szkingdom.ssm.bean;
 
 import java.util.List;
 
+/**
+ * test commit
+ */
 public class EasyUIResult {
 
     private Long total;
